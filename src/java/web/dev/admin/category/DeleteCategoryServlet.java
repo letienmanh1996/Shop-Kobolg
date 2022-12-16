@@ -5,13 +5,10 @@
 package web.dev.admin.category;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import web.dev.BaseServlet;
-import web.dev.data.Database;
+import web.dev.admin.BaseAdminServlet;
 import web.dev.data.dao.CategoryDao;
 import web.dev.data.dao.DatabaseDao;
 
@@ -19,7 +16,7 @@ import web.dev.data.dao.DatabaseDao;
  *
  * @author Admin
  */
-public class DeleteCategoryServlet extends BaseServlet {
+public class DeleteCategoryServlet extends BaseAdminServlet {
 
    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -34,6 +31,7 @@ public class DeleteCategoryServlet extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        super.doGet(request, response);
         int categoryId = Integer.parseInt(request.getParameter("categoryId"));
         CategoryDao categoryDao = DatabaseDao.getInstance().getCategoryDao();
         categoryDao.delete(categoryId);
@@ -54,15 +52,5 @@ public class DeleteCategoryServlet extends BaseServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

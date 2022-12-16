@@ -49,7 +49,7 @@
                             <div class="single-right">
                                 <h1>${product.name}</h1>
                                 <p>
-                                    <span>${product.price}</span>
+                                    <span>$${product.price}</span>
                                     <span>-</span>
                                     <span>$185.00</span>
                                 </p>

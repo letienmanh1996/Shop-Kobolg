@@ -1,22 +1,27 @@
 package web.dev.data.model;
 
+import web.dev.data.Database;
+
 public class OrderDetail {
     public int id;
     public int productId;
-    public int order_id;
+    public int orderId;
     public int amount;
+    public double price;
 
-    public OrderDetail(int productId, int order_id, int amount) {
+    public OrderDetail(int productId, int orderId, int amount, double price) {
         this.productId = productId;
-        this.order_id = order_id;
+        this.orderId = orderId;
         this.amount = amount;
+        this.price = price;
     }
 
-    public OrderDetail(int id, int productId, int order_id, int amount) {
+    public OrderDetail(int id, int productId, int orderId, int amount, double price) {
         this.id = id;
         this.productId = productId;
-        this.order_id = order_id;
+        this.orderId = orderId;
         this.amount = amount;
+        this.price = price;
     }
 
     public int getId() {
@@ -35,12 +40,12 @@ public class OrderDetail {
         this.productId = productId;
     }
 
-    public int getOrder_id() {
-        return order_id;
+    public int getOrderId() {
+        return orderId;
     }
 
-    public void setOrder_id(int order_id) {
-        this.order_id = order_id;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     public int getAmount() {
@@ -50,5 +55,20 @@ public class OrderDetail {
     public void setAmount(int amount) {
         this.amount = amount;
     }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public Product getProduct(){
+        return Database.getInstance().getProductDao().find(productId);
+    }
     
+    public Order getOrder(){
+        return Database.getInstance().getOrderDao().find(orderId);
+    }
 }

@@ -8,7 +8,7 @@ import java.io.IOException;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import web.dev.BaseServlet;
+import web.dev.admin.BaseAdminServlet;
 import web.dev.data.dao.CategoryDao;
 import web.dev.data.dao.DatabaseDao;
 import web.dev.data.model.Category;
@@ -17,7 +17,7 @@ import web.dev.data.model.Category;
  *
  * @author Admin
  */
-public class CreateCategoryServlet extends  BaseServlet {
+public class CreateCategoryServlet extends  BaseAdminServlet {
 
    
 
@@ -33,6 +33,7 @@ public class CreateCategoryServlet extends  BaseServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        super.doGet(request, response);
         request.getRequestDispatcher("admin/category/create.jsp").include(request, response);
     }
 

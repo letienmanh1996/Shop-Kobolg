@@ -1,5 +1,7 @@
 package web.dev.data.model;
 
+import web.dev.data.Database;
+
 public class Product {
     public int id;
     public String name;
@@ -95,4 +97,7 @@ public class Product {
         this.categoryId = categoryId;
     }
     
+    public Category getCategory(){
+        return Database.getInstance().getCategoryDao().find(categoryId);
+    }
 }

@@ -43,7 +43,7 @@
                                             <th>STT</th>
                                             <th>Image</th>
                                             <th>Name</th>
-                                            <th>Description</th>
+                                            <th>Category</th>
                                             <th>Price</th>
                                             <th>Quantity</th>
                                             <th>#</th>
@@ -72,8 +72,8 @@
                                                     <img src="${product.img}" alt="alt" width="60" height="60"/>
                                                 </td>
                                                 <td>${product.name}</td>
-                                                <td>${product.desc}</td>
-                                                <td>${product.price}</td>
+                                                <td>${product.category.name}</td>
+                                                <td>$${product.price}</td>
                                                 <td>${product.quantity}</td>
                                                 <td>
                                                     <a href="EditProductServlet?productId=${product.id}">Edit</a>

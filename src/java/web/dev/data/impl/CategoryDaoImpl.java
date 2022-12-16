@@ -19,9 +19,9 @@ public class CategoryDaoImpl implements CategoryDao {
     public void insert(Category category) {
         try {
             Connection conn = MySQLDriver.getInstance().getConnection();
-            String sql = "INSERT INTO CATEGORIES(ID, NAME, IMG, DESC) VALUES(NULL,?,?,?)";
+            String sql = "INSERT INTO CATEGORIES(ID, NAME, IMG, DESCRIPTION) VALUES(NULL,?,?,?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1,category.name);
+            stmt.setString(1, category.name);
             stmt.setString(2, category.img);
             stmt.setString(3, category.desc);
             stmt.execute();
@@ -35,23 +35,23 @@ public class CategoryDaoImpl implements CategoryDao {
     public void update(Category category) {
         try {
             Connection conn = MySQLDriver.getInstance().getConnection();
-            String sql = "UPDATE CATEGORIES SET  NAME=?, IMG=? , DESC=?, WHERE ID=?";
+            String sql = "UPDATE CATEGORIES SET  NAME=?, IMG=? , DESCRIPTION=? WHERE ID=?";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setString(1,category.name);
+            stmt.setString(1, category.name);
             stmt.setString(2, category.img);
             stmt.setString(3, category.desc);
             stmt.setInt(4, category.id);
 
-            
             stmt.execute();
         } catch (Exception e) {
             // TODO: handle exception
+             Logger.getLogger("edit category").log(Level.SEVERE, e.toString());
         }
     }
 
     @Override
     public void delete(int categoryId) {
-         try {
+        try {
             Connection conn = MySQLDriver.getInstance().getConnection();
             String sql = "DELETE FROM CATEGORIES WHERE ID=?";
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -66,7 +66,7 @@ public class CategoryDaoImpl implements CategoryDao {
 
     @Override
     public Category find(int categoryId) {
-         Connection conn = MySQLDriver.getInstance().getConnection();
+        Connection conn = MySQLDriver.getInstance().getConnection();
         try {
             String sql = "SELECT * FROM CATEGORIES WHERE ID = ?";
             PreparedStatement stmt = conn.prepareStatement(sql);
@@ -76,7 +76,7 @@ public class CategoryDaoImpl implements CategoryDao {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
                 String img = rs.getString("img");
-                String desc = rs.getString("desc");
+                String desc = rs.getString("description");
                 return new Category(id, name, img, desc);
             }
         } catch (SQLException ex) {
@@ -98,7 +98,7 @@ public class CategoryDaoImpl implements CategoryDao {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
                 String img = rs.getString("img");
-                String desc = rs.getString("desc");
+                String desc = rs.getString("description");
                 categoryList.add(new Category(id, name, img, desc));
             }
         } catch (SQLException ex) {

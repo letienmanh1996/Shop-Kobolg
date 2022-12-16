@@ -19,7 +19,7 @@ public class ProductDaoImpl implements ProductDao {
     public void insert(Product product) {
         try {
             Connection conn = MySQLDriver.getInstance().getConnection();
-            String sql = "INSERT INTO PRODUCTS(ID, NAME, DESC, IMG, PRICE, QUANTITY, CATEGORY_ID) VALUES(NULL,?,?,?,?,?,?)";
+            String sql = "INSERT INTO PRODUCTS(ID, NAME, DESCRIPTION, IMG, PRICE, QUANTITY, CATEGORY_ID) VALUES(NULL,?,?,?,?,?,?)";
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, product.name);
             stmt.setString(2, product.desc);
@@ -36,7 +36,23 @@ public class ProductDaoImpl implements ProductDao {
 
     @Override
     public void update(Product product) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            Connection conn = MySQLDriver.getInstance().getConnection();
+            String sql = "UPDATE PRODUCTS SET NAME = ?, DESCRIPTION = ?, IMG = ?, PRICE = ?, QUANTITY = ?, CATEGORY_ID = ? WHERE ID=?";
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setString(1, product.name);
+            stmt.setString(2, product.desc);
+            stmt.setString(3, product.img);
+            stmt.setDouble(4, product.price);
+            stmt.setInt(5, product.quantity);
+            stmt.setInt(6, product.categoryId);
+            stmt.setInt(7, product.id);
+            stmt.execute();
+
+        } catch (Exception e) {
+            // TODO: handle exception
+            Logger.getLogger("create product").log(Level.SEVERE, e.toString());
+        }
     }
 
     @Override
@@ -65,13 +81,13 @@ public class ProductDaoImpl implements ProductDao {
             if (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                String desc = rs.getString("desc");
+                String description = rs.getString("description");
                 String img = rs.getString("img");
                 double price = rs.getDouble("price");
                 int quantity = rs.getInt("quantity");
                 int view = rs.getInt("view");
                 int categoryId = rs.getInt("category_id");
-                return new Product(id, name, desc, img, price, quantity, view, categoryId);
+                return new Product(id, name, description, img, price, quantity, view, categoryId);
             }
         } catch (SQLException ex) {
         }
@@ -90,13 +106,13 @@ public class ProductDaoImpl implements ProductDao {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                String desc = rs.getString("desc");
+                String description = rs.getString("description");
                 String img = rs.getString("img");
                 double price = rs.getDouble("price");
                 int quantity = rs.getInt("quantity");
                 int view = rs.getInt("view");
                 int categoryId = rs.getInt("category_id");
-                productList.add(new Product(id, name, desc, img, price, quantity, view, categoryId));
+                productList.add(new Product(id, name, description, img, price, quantity, view, categoryId));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -117,13 +133,13 @@ public class ProductDaoImpl implements ProductDao {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                String desc = rs.getString("desc");
+                String description = rs.getString("description");
                 String img = rs.getString("img");
                 double price = rs.getDouble("price");
                 int quantity = rs.getInt("quantity");
                 int view = rs.getInt("view");
                 int categoryId = rs.getInt("category_id");
-                productList.add(new Product(id, name, desc, img, price, quantity, view, categoryId));
+                productList.add(new Product(id, name, description, img, price, quantity, view, categoryId));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -145,12 +161,12 @@ public class ProductDaoImpl implements ProductDao {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                String desc = rs.getString("desc");
+                String description = rs.getString("description");
                 String img = rs.getString("img");
                 double price = rs.getDouble("price");
                 int quantity = rs.getInt("quantity");
                 int view = rs.getInt("view");
-                productList.add(new Product(id, name, desc, img, price, quantity, view, categoryId));
+                productList.add(new Product(id, name, description, img, price, quantity, view, categoryId));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -172,13 +188,13 @@ public class ProductDaoImpl implements ProductDao {
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
-                String desc = rs.getString("desc");
+                String description = rs.getString("description");
                 String img = rs.getString("img");
                 double price = rs.getDouble("price");
                 int quantity = rs.getInt("quantity");
                 int view = rs.getInt("view");
                 int categoryId = rs.getInt("category_id");
-                productList.add(new Product(id, name, desc, img, price, quantity, view, categoryId));
+                productList.add(new Product(id, name, description, img, price, quantity, view, categoryId));
             }
         } catch (SQLException ex) {
             ex.printStackTrace();

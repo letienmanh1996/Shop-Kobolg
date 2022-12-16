@@ -14,4 +14,6 @@ public class Constants {
     public static final String PASS = "";
     
     public static final int TOP_VIEW_COUNT = 4;
+    
+     public static final int NUMBER_DAY = 14;
 }

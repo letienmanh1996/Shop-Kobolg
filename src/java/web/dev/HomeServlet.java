@@ -38,7 +38,9 @@ public class HomeServlet extends BaseServlet {
         
         ProductDao productDao = DatabaseDao.getInstance().getProductDao();
         List<Product> topProductList = productDao.findTopProduct();
+        List<Product> productList = productDao.findAll();
         
+        request.setAttribute("productList", productList);
         request.setAttribute("categoryList", categoryList);
         request.setAttribute("topProductList", topProductList);
         request.getRequestDispatcher("home.jsp").include(request, response);

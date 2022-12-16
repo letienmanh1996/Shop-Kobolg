@@ -25,7 +25,7 @@
 
             }
 
-            
+
         </style>
 
     </head>
@@ -62,79 +62,76 @@
                     <div class="col-md-12">
                         <div class="main-content">
                             <div class="page-main-content">
-                                <form action="" class="kobolg-cart">
-                                    <table class="shop-table">
-                                        <thead>
+                                <table class="shop-table">
+                                    <thead>
+                                        <tr>
+                                            <th class="product-remove"></th>
+                                            <th class="product-thumbnail">Img</th>
+                                            <th class="product-name">Product</th>
+                                            <th class="product-price">Price</th>
+                                            <th class="product-quantity">Quantity</th>
+                                            <th class="product-subtotal">Total</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <c:forEach items="${cart}" var="orderDetailSession">
                                             <tr>
-                                                <th class="product-remove"></th>
-                                                <th class="product-thumbnail">Img</th>
-                                                <th class="product-name">Product</th>
-                                                <th class="product-price">Price</th>
-                                                <th class="product-quantity">Quantity</th>
-                                                <th class="product-subtotal">Total</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <c:forEach items="${cart}" var="orderDetailSession">
-                                                <tr>
-                                                    <td class="product-remove">
-                                                        <form action="CartServlet" method="post" class="delete">
+                                                <td class="product-remove">
+                                                    <form action="CartServlet" method="post" class="delete">
+                                                        <input type="hidden" name="productId" value="${orderDetailSession.productId}"/>
+                                                        <input type="hidden" name="action" value="delete"/>
+                                                        <button type="submit">X</button>
+                                                    </form>
+                                                </td>
+                                                <td class="product-thumbnail">
+                                                    <a href="">
+                                                        <img src="${orderDetailSession.productImg}" alt="">
+                                                    </a>
+                                                </td>
+                                                <td class="product-name">
+                                                    <a href=""> ${orderDetailSession.productName}</a>
+                                                </td>
+                                                <td class="product-price">
+                                                    <span>$
+                                                        <span>${orderDetailSession.productPrice}</span>
+                                                    </span>
+                                                </td>
+                                                <td class="product-quantity">
+                                                    <div class="quantity-lable">
+                                                        <form action="CartServlet" method="post" class="quantity-item">
                                                             <input type="hidden" name="productId" value="${orderDetailSession.productId}"/>
-                                                            <input type="hidden" name="action" value="delete"/>
-                                                            <button type="submit">X</button>
+                                                            <input type="hidden" name="action" value="update"/>
+                                                            <input type="hidden" name="quantity" value="-1"/>
+                                                            <button type="submit" class="button-submit"> - </button>
                                                         </form>
-                                                    </td>
-                                                    <td class="product-thumbnail">
-                                                        <a href="">
-                                                            <img src="${orderDetailSession.productImg}" alt="">
-                                                        </a>
-                                                    </td>
-                                                    <td class="product-name">
-                                                        <a href=""> ${orderDetailSession.productName}</a>
-                                                    </td>
-                                                    <td class="product-price">
-                                                        <span>$
-                                                            <span>${orderDetailSession.productPrice}</span>
-                                                        </span>
-                                                    </td>
-                                                    <td class="product-quantity">
-                                                        <div class="quantity-lable">
-                                                            <!--                                                            <form action="CartServlet" method="post" class="quantity-item">
-                                                                                                                            <input type="hidden" name="productId" value="${orderDetailSession.productId}"/>
-                                                                                                                            <input type="hidden" name="action" value="update"/>
-                                                                                                                            <input type="hidden" name="quantity" value="-1"/>
-                                                                                                                            <button type="submit" class="button-submit"> - </button>
-                                                                                                                        </form>
-                                                                                                                        <div class="quantity-item">${orderDetailSession.quantity}</div>
-                                                                                                                        <form action="CartServlet" method="post" class="quantity-item">
-                                                                                                                            <input type="hidden" name="productId" value="${orderDetailSession.productId}"/>
-                                                                                                                            <input type="hidden" name="action" value="update"/>
-                                                                                                                            <input type="hidden" name="quantity" value="1"/>
-                                                                                                                            <button type="submit"> + </button>
-                                                                                                                        </form>-->
-                                                            <input type="number" id="quantity" name="quantity" min="1"  value="${orderDetailSession.quantity}">
-                                                        </div>
-                                                    </td>
-                                                    <td class="product-subtotal">
-                                                        <span>
-                                                            $
-                                                            <span>${orderDetailSession.quantity * orderDetailSession.productPrice}</span>
-                                                        </span>
-                                                    </td>
-                                                </tr>
-                                            </c:forEach>
-                                            <tr>
-                                                <td colspan="6" class="actions">
-                                                    <div class="coupon">
-                                                        <input type="text" placeholder="Colpon code">
-                                                        <button>Apply coupon</button>
+                                                        <div class="quantity-item">${orderDetailSession.quantity}</div>
+                                                        <form action="CartServlet" method="post" class="quantity-item">
+                                                            <input type="hidden" name="productId" value="${orderDetailSession.productId}"/>
+                                                            <input type="hidden" name="action" value="update"/>
+                                                            <input type="hidden" name="quantity" value="1"/>
+                                                            <button type="submit"> + </button>
+                                                        </form>
                                                     </div>
-                                                    <button class="button">Update cart</button>
+                                                </td>
+                                                <td class="product-subtotal">
+                                                    <span>
+                                                        $
+                                                        <span>${orderDetailSession.quantity * orderDetailSession.productPrice}</span>
+                                                    </span>
                                                 </td>
                                             </tr>
-                                        </tbody>
-                                    </table>
-                                </form>
+                                        </c:forEach>
+                                        <tr>
+                                            <td colspan="6" class="actions">
+                                                <div class="coupon">
+                                                    <input type="text" placeholder="Colpon code">
+                                                    <button>Apply coupon</button>
+                                                </div>
+                                                <button class="button">Update cart</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>

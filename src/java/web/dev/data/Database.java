@@ -11,6 +11,8 @@ import web.dev.data.dao.OrderDetailDao;
 import web.dev.data.dao.ProductDao;
 import web.dev.data.dao.UserDao;
 import web.dev.data.impl.CategoryDaoImpl;
+import web.dev.data.impl.OrderDaoImpl;
+import web.dev.data.impl.OrderDetailDaoImpl;
 import web.dev.data.impl.ProductDaoImpl;
 import web.dev.data.impl.UserDaoImpl;
 
@@ -34,12 +36,12 @@ public class Database extends DatabaseDao {
 
     @Override
     public OrderDao getOrderDao() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return new OrderDaoImpl();
     }
 
     @Override
     public OrderDetailDao getOrderDetailDao() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        return new OrderDetailDaoImpl();
     }
 
 }

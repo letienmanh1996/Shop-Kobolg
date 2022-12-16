@@ -164,310 +164,53 @@
                 <div class="kobolg-products">
                     <div class="products-inner">
                         <div class="row">
-                            <div class="col-md-3">
-                                <div class="products-inner-item">
-                                    <div class="products-hover">
-                                        <div class="products-thumb">
-                                            <a href="">
-                                                <img src="./public/img/apro61-1-270x350.jpg" alt="" />
-                                            </a>
-                                            <div class="flash">
-                                                <a href=""><i class="fa-regular fa-eye"></i></a>
+                            <c:forEach items="${productList}" var="product">
+                                <div class="col-md-3">
+                                    <div class="products-inner-item">
+                                        <div class="products-hover">
+                                            <div class="products-thumb">
+                                                <a href="ProductDetailServlet?productId=${product.id}">
+                                                    <img src="${product.img}" alt="" />
+                                                </a>
+                                                <div class="flash">
+                                                    <a href=""><i class="fa-regular fa-eye"></i></a>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="products-info">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <a class="products-item" href="">
-                                                <h5>Back Watches</h5>
-                                            </a>
-                                            <h6>$79.00 - $139.00</h6>
-                                        </div>
-                                        <div class="group-button">
-                                            <div class="group-button-hover">
-                                                <a href="" class="hear-item">
-                                                    <i class="fa-regular fa-heart"></i>
+                                            <div class="products-info">
+                                                <i class="fa-regular fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                                <i class="fa-regular fa-star"></i>
+                                                <a class="products-item" href="">
+                                                    <h5>${product.name}</h5>
                                                 </a>
-                                                <a href="" class="car-item">
-                                                    <i class="fa-solid fa-cart-shopping"></i>
-                                                </a>
-                                                <a href="" class="arrow-item">
-                                                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
-                                                </a>
+                                                <h6>$${product.price}</h6>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="products-inner-item">
-                                    <div class="products-hover">
-                                        <div class="products-thumb">
-                                            <a href="">
-                                                <img src="./public/img/apro101-1-270x350.jpg" alt="" />
-                                            </a>
-                                            <div class="flash">
-                                                <a href=""><i class="fa-regular fa-eye"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="products-info">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <a class="products-item" href="">
-                                                <h5>Mac 27 inch</h5>
-                                            </a>
-                                            <h6>$60.00</h6>
-                                        </div>
-                                        <div class="group-button">
-                                            <div class="group-button-hover">
-                                                <a href="" class="hear-item">
-                                                    <i class="fa-regular fa-heart"></i>
-                                                </a>
-                                                <a href="" class="car-item">
-                                                    <i class="fa-solid fa-cart-shopping"></i>
-                                                </a>
-                                                <a href="" class="arrow-item">
-                                                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
-                                                </a>
+                                            <div class="group-button">
+                                                <div class="group-button-hover">
+                                                    <a href="" class="hear-item">
+                                                        <i class="fa-regular fa-heart"></i>
+                                                    </a>
+                                                    <form action="CartServlet" method="post">
+                                                        <input type="hidden" name="productId" value="${product.id}"/>
+                                                        <input type="hidden" name="quantity" value="1"/>
+                                                        <input type="hidden" name="action" value="create"/>
+                                                        <button type="submit" class="submit-button">
+                                                            <a href="" class="car-item">
+                                                                <i class="fa-solid fa-cart-shopping"></i>
+                                                            </a>
+                                                        </button>
+                                                    </form>
+                                                    <a href="" class="arrow-item">
+                                                        <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="products-inner-item">
-                                    <div class="products-hover">
-                                        <div class="products-thumb">
-                                            <a href="">
-                                                <img src="./public/img/apro1113-270x350.jpg" alt="" />
-                                            </a>
-                                            <div class="flash">
-                                                <a href=""><i class="fa-regular fa-eye"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="products-info">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <a class="products-item" href="">
-                                                <h5>Red Consoles</h5>
-                                            </a>
-                                            <h6>$129.00</h6>
-                                        </div>
-                                        <div class="group-button">
-                                            <div class="group-button-hover">
-                                                <a href="" class="hear-item">
-                                                    <i class="fa-regular fa-heart"></i>
-                                                </a>
-                                                <a href="" class="car-item">
-                                                    <i class="fa-solid fa-cart-shopping"></i>
-                                                </a>
-                                                <a href="" class="arrow-item">
-                                                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="products-inner-item">
-                                    <div class="products-hover">
-                                        <div class="products-thumb">
-                                            <a href="">
-                                                <img src="./public/img/apro141-1-270x350.jpg" alt="" />
-                                            </a>
-                                            <div class="flash">
-                                                <a href=""><i class="fa-regular fa-eye"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="products-info">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <a class="products-item" href="">
-                                                <h5>Smart Monitor</h5>
-                                            </a>
-                                            <h6>$89.00</h6>
-                                        </div>
-                                        <div class="group-button">
-                                            <div class="group-button-hover">
-                                                <a href="" class="hear-item">
-                                                    <i class="fa-regular fa-heart"></i>
-                                                </a>
-                                                <a href="" class="car-item">
-                                                    <i class="fa-solid fa-cart-shopping"></i>
-                                                </a>
-                                                <a href="" class="arrow-item">
-                                                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="products-inner-item">
-                                    <div class="products-hover">
-                                        <div class="products-thumb">
-                                            <a href="">
-                                                <img src="./public/img/apro71-1-270x350.jpg" alt="" />
-                                            </a>
-                                            <div class="flash">
-                                                <a href=""><i class="fa-regular fa-eye"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="products-info">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <a class="products-item" href="">
-                                                <h5>Gaming Mouse</h5>
-                                            </a>
-                                            <h6>$89.00</h6>
-                                        </div>
-                                        <div class="group-button">
-                                            <div class="group-button-hover">
-                                                <a href="" class="hear-item">
-                                                    <i class="fa-regular fa-heart"></i>
-                                                </a>
-                                                <a href="" class="car-item">
-                                                    <i class="fa-solid fa-cart-shopping"></i>
-                                                </a>
-                                                <a href="" class="arrow-item">
-                                                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="products-inner-item">
-                                    <div class="products-hover">
-                                        <div class="products-thumb">
-                                            <a href="">
-                                                <img src="./public/img/apro91-1-270x350.jpg" alt="" />
-                                            </a>
-                                            <div class="flash">
-                                                <a href=""><i class="fa-regular fa-eye"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="products-info">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <a class="products-item" href="">
-                                                <h5>Classic Watches</h5>
-                                            </a>
-                                            <h6>$89.00 - $139.00</h6>
-                                        </div>
-                                        <div class="group-button">
-                                            <div class="group-button-hover">
-                                                <a href="" class="hear-item">
-                                                    <i class="fa-regular fa-heart"></i>
-                                                </a>
-                                                <a href="" class="car-item">
-                                                    <i class="fa-solid fa-cart-shopping"></i>
-                                                </a>
-                                                <a href="" class="arrow-item">
-                                                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="products-inner-item">
-                                    <div class="products-hover">
-                                        <div class="products-thumb">
-                                            <a href="">
-                                                <img src="./public/img/apro1211-2-270x350.jpg" alt="" />
-                                            </a>
-                                            <div class="flash">
-                                                <a href=""><i class="fa-regular fa-eye"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="products-info">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <a class="products-item" href="">
-                                                <h5>Modern Watchess</h5>
-                                            </a>
-                                            <h6>$119.00</h6>
-                                        </div>
-                                        <div class="group-button">
-                                            <div class="group-button-hover">
-                                                <a href="" class="hear-item">
-                                                    <i class="fa-regular fa-heart"></i>
-                                                </a>
-                                                <a href="" class="car-item">
-                                                    <i class="fa-solid fa-cart-shopping"></i>
-                                                </a>
-                                                <a href="" class="arrow-item">
-                                                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-3">
-                                <div class="products-inner-item">
-                                    <div class="products-hover">
-                                        <div class="products-thumb">
-                                            <a href="">
-                                                <img src="./public/img/apro151-1-270x350.jpg" alt="" />
-                                            </a>
-                                            <div class="flash">
-                                                <a href=""><i class="fa-regular fa-eye"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="products-info">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <a class="products-item" href="">
-                                                <h5>Cellphone Factory</h5>
-                                            </a>
-                                            <h6>$79.00</h6>
-                                        </div>
-                                        <div class="group-button">
-                                            <div class="group-button-hover">
-                                                <a href="" class="hear-item">
-                                                    <i class="fa-regular fa-heart"></i>
-                                                </a>
-                                                <a href="" class="car-item">
-                                                    <i class="fa-solid fa-cart-shopping"></i>
-                                                </a>
-                                                <a href="" class="arrow-item">
-                                                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            </c:forEach>
                         </div>
                     </div>
                 </div>

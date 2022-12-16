@@ -5,12 +5,11 @@
 package web.dev.admin.category;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import web.dev.BaseServlet;
+import web.dev.admin.BaseAdminServlet;
 import web.dev.data.dao.CategoryDao;
 import web.dev.data.dao.DatabaseDao;
 import web.dev.data.model.Category;
@@ -19,7 +18,7 @@ import web.dev.data.model.Category;
  *
  * @author Admin
  */
-public class EditCategoryServlet extends BaseServlet {
+public class EditCategoryServlet extends BaseAdminServlet {
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -33,6 +32,7 @@ public class EditCategoryServlet extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        super.doGet(request, response);
         int categoryId = Integer.parseInt(request.getParameter("categoryId"));
         CategoryDao categoryDao = DatabaseDao.getInstance().getCategoryDao();
         Category category = categoryDao.find(categoryId);
@@ -53,13 +53,14 @@ public class EditCategoryServlet extends BaseServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        super.doPost(request, response);
         int categoryId = Integer.parseInt(request.getParameter("categoryId"));
         CategoryDao categoryDao = DatabaseDao.getInstance().getCategoryDao();
         Category category =categoryDao.find(categoryId);
         
         String name = request.getParameter("name");
         String img = request.getParameter("img");
-        String desc = request.getParameter("desc");
+        String desc = request.getParameter("description");
         
         category.setName(name);
         category.setImg(img);

@@ -5,9 +5,7 @@
 package web.dev;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
@@ -27,8 +25,6 @@ import web.dev.util.StringHelper;
  */
 public class CheckoutServlet extends BaseServlet {
 
-   
-
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -41,32 +37,33 @@ public class CheckoutServlet extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-         HttpSession session = request.getSession();
-        User user = (User)session.getAttribute("user");
-        if(user == null){
+        HttpSession session = request.getSession();
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
             response.sendRedirect("LoginServlet");
-        }
-        
-        OrderDao orderDao = DatabaseDao.getInstance().getOrderDao();
-        
-        String code = StringHelper.randomString(9);
-        Order order = new Order(code, "order", "pending", user.getId());
-        orderDao.insert(order);
-        
-        order = orderDao.find(code);
-        
-        OrderDetailDao orderDetailDao = DatabaseDao.getInstance().getOrderDetailDao();
-        
-        List<OrderDetailSession> cart = (List<OrderDetailSession>) session.getAttribute("cart");
-        if(cart != null){
-            for (OrderDetailSession ods : cart) {
-                OrderDetail orderDetail = new OrderDetail(ods.getProductId(), order.getId(), ods.getQuantity());
-                orderDetailDao.insert(orderDetail);
+        } else {
+            OrderDao orderDao = DatabaseDao.getInstance().getOrderDao();
+
+            String code = StringHelper.randomString(9);
+            Order order = new Order(code, "order", "pending", user.getId());
+            orderDao.insert(order);
+
+            order = orderDao.find(code);
+
+            OrderDetailDao orderDetailDao = DatabaseDao.getInstance().getOrderDetailDao();
+
+            List<OrderDetailSession> cart = (List<OrderDetailSession>) session.getAttribute("cart");
+            if (cart != null) {
+                for (OrderDetailSession ods : cart) {
+                    OrderDetail orderDetail = new OrderDetail(ods.getProductId(), order.getId(), ods.getQuantity(), ods.getProductPrice());
+                    orderDetailDao.insert(orderDetail);
+                }
             }
+
+            session.removeAttribute("cart");
+            response.sendRedirect("CartServlet");
         }
-        
-        session.removeAttribute("cart");
-        response.sendRedirect("CartServlet");
+
     }
 
     /**

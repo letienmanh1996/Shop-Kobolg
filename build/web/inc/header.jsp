@@ -37,6 +37,11 @@
                         <i class="fa-solid fa-caret-down"></i>
                     </a>
                 </div>
+                <c:if test="${sessionScope.user != null}">
+                <div>
+                    <a href="DashboardServlet">Dashboard</a>
+                </div>
+                </c:if>
             </div>
         </div>
     </div>

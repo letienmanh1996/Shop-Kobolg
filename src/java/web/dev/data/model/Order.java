@@ -1,5 +1,7 @@
 package web.dev.data.model;
 
+import web.dev.data.Database;
+
 public class Order {
     public int id; 
     public String code; 
@@ -62,4 +64,7 @@ public class Order {
         this.userId = userId;
     }
     
+    public User getUser(){
+        return Database.getInstance().getUserDao().find(userId);
+    }
 }

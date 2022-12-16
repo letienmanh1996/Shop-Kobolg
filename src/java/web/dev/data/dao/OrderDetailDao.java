@@ -14,5 +14,7 @@ public interface OrderDetailDao {
     public OrderDetail find(int orderdetailId);
 
     public List<OrderDetail> findAll();
+    
+    public List<OrderDetail> findByOrder(int orderId);
 
 }

@@ -11,5 +11,8 @@ public interface OrderDao {
     public Order find(int orderId);
     public Order find(String code);
     public List<Order> findAll();
+    public List<Order> findByStatus(String status);
+    public int countOrderByDay(String date);
+
 
 }

@@ -89,16 +89,15 @@ public class UserDaoImpl implements UserDao {
         List<User> userList = new ArrayList<>();
         Connection conn = MySQLDriver.getInstance().getConnection();
         try {
-            String sql = "SELECT * FROM USERS WHERE ID > ?";
+            String sql = "SELECT * FROM USERS";
             PreparedStatement stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, 2);
             ResultSet rs = stmt.executeQuery();
             while (rs.next()) {
                 int id = rs.getInt("id");
                 String email = rs.getString("email");
                 String password = rs.getString("password");
                 String role = rs.getString("role");
-                userList.add(new User(email, password, role));
+                userList.add(new User(id, email, password, role));
             }
         } catch (SQLException ex) {
         }
