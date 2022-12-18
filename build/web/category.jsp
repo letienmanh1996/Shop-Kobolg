@@ -43,85 +43,93 @@
                                 </form>
                             </div>
                             <div class="kobolg-select">
-                                <form action="" class="kobolg-ordering">
-                                    <select name="orderby" id="">
-                                        <option value="" selected="selected">Defaul sorting</option>
-                                        <option value="" selected="selected">
-                                            Sort by popularity
-                                        </option>
-                                        <option value="" selected="selected">
-                                            Sort bt average rating
-                                        </option>
-                                        <option value="" selected="selected">Sort by latest</option>
-                                        <option value="" selected="selected">
-                                            Sort by price: low to high
-                                        </option>
-                                        <option value="" selected="selected">
-                                            Sort by price: high to low
-                                        </option>
-                                    </select>
-                                </form>
-                                <form action="" class="kobolg-page">
-                                    <select name="orderby" id="">
-                                        <option value="" selected="selected">Show 12</option>
-                                        <option value="" selected="selected">Show 05</option>
-                                        <option value="" selected="selected">Show 10</option>
-                                        <option value="" selected="selected">Show 12</option>
-                                        <option value="" selected="selected">Show 15</option>
-                                        <option value="" selected="selected">Show All</option>
-                                    </select>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <c:forEach items="${productList}" var="product">
-                            <div class="col-md-3">
-                                <div class="products-inner-item">
-                                    <div class="products-hover">
-                                        <div class="products-thumb">
-                                            <a href="ProductDetailServlet?productId=${product.id}">
-                                                <img src="${product.img}" alt="" />
-                                            </a>
-                                            <div class="flash">
-                                                <a href=""><i class="fa-regular fa-eye"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="products-info">
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <i class="fa-regular fa-star"></i>
-                                            <a class="products-item" href="">
-                                                <h5><span>$</span>${product.name}</h5>
-                                            </a>
-                                            <h6>${product.price}</h6>
-                                        </div>
-                                        <div class="group-button">
-                                            <div class="group-button-hover">
-                                                <a href="" class="hear-item">
-                                                    <i class="fa-regular fa-heart"></i>
-                                                </a>
-                                                <form action="CartServlet" method="post">
-                                                    <input type="hidden" name="productId" value="${product.id}"/>
-                                                    <input type="hidden" name="quantity" value="1"/>
-                                                    <input type="hidden" name="action" value="create"/>
-                                                    <button type="submit" class="submit-button">
-                                                        <a href="" class="car-item">
-                                                            <i class="fa-solid fa-cart-shopping"></i>
-                                                        </a>
-                                                    </button>
-                                                </form>
-                                                <a href="" class="arrow-item">
-                                                    <i class="fa-solid fa-arrow-right-arrow-left"></i>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                <form action="CategoryServlet" method="get" class="kobolg-ordering">
+                                    <input type="hidden" name="categoryId" value="${categoryId}"/>
+                                    <input type="hidden" name="orderBy" value="price"/>
+                                    <select name="order" id="" onchange="this.form.submit()">
+                                        <option <c:if test="${order == 'asc'}">selected</c:if> value="asc">Price: Low to High</option>
+                                        <option <c:if test="${order == 'desc'}">selected</c:if> value="desc">Price: High to Low</option>
+                                        </select>
+                                    </form>
+                                    <form action="" class="kobolg-page">
+                                        <select name="orderby" id="">
+                                            <option value="" selected="selected">Show 12</option>
+                                            <option value="" selected="selected">Show 05</option>
+                                            <option value="" selected="selected">Show 10</option>
+                                            <option value="" selected="selected">Show 12</option>
+                                            <option value="" selected="selected">Show 15</option>
+                                            <option value="" selected="selected">Show All</option>
+                                        </select>
+                                    </form>
                                 </div>
                             </div>
-                        </c:forEach>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                            <c:forEach items="${categoryList}" var="category">
+                                <div class="col-md-12">
+                                    <div class="camera">
+                                        <a href="CategoryServlet?categoryId=${category.id}">
+                                            <img src="${category.img}" alt="">
+                                            <h1>${category.name}</h1>
+                                        </a>
+                                    </div>
+                                </div>
+                            </c:forEach>
+                        </div>
+                        <div class="col-md-9">
+                            <div class="container">
+                                <div class="row">
+                                    <c:forEach items="${productList}" var="product">
+                                        <div class="col-md-4">
+                                            <div class="products-inner-item">
+                                                <div class="products-hover">
+                                                    <div class="products-thumb">
+                                                        <a href="ProductDetailServlet?productId=${product.id}">
+                                                            <img src="${product.img}" alt="" />
+                                                        </a>
+                                                        <div class="flash">
+                                                            <a href=""><i class="fa-regular fa-eye"></i></a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="products-info">
+                                                        <i class="fa-regular fa-star"></i>
+                                                        <i class="fa-regular fa-star"></i>
+                                                        <i class="fa-regular fa-star"></i>
+                                                        <i class="fa-regular fa-star"></i>
+                                                        <i class="fa-regular fa-star"></i>
+                                                        <a class="products-item" href="">
+                                                            <h5><span>$</span>${product.name}</h5>
+                                                        </a>
+                                                        <h6>${product.price}</h6>
+                                                    </div>
+                                                    <div class="group-button">
+                                                        <div class="group-button-hover">
+                                                            <a href="" class="hear-item">
+                                                                <i class="fa-regular fa-heart"></i>
+                                                            </a>
+                                                            <form action="CartServlet" method="post">
+                                                                <input type="hidden" name="productId" value="${product.id}" />
+                                                                <input type="hidden" name="quantity" value="1" />
+                                                                <input type="hidden" name="action" value="create" />
+                                                                <button type="submit" class="submit-button">
+                                                                    <a href="" class="car-item">
+                                                                        <i class="fa-solid fa-cart-shopping"></i>
+                                                                    </a>
+                                                                </button>
+                                                            </form>
+                                                            <a href="" class="arrow-item">
+                                                                <i class="fa-solid fa-arrow-right-arrow-left"></i>
+                                                            </a>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </c:forEach>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

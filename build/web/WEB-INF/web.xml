@@ -84,6 +84,10 @@
         <servlet-name>EditOrderServlet</servlet-name>
         <servlet-class>web.dev.admin.order.EditOrderServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ShopServlet</servlet-name>
+        <servlet-class>web.dev.ShopServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>HomeServlet</servlet-name>
         <url-pattern>/HomeServlet</url-pattern>
@@ -167,6 +171,10 @@
     <servlet-mapping>
         <servlet-name>EditOrderServlet</servlet-name>
         <url-pattern>/EditOrderServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ShopServlet</servlet-name>
+        <url-pattern>/ShopServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

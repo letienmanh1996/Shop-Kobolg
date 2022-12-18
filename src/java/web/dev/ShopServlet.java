@@ -19,8 +19,9 @@ import web.dev.data.model.Product;
  *
  * @author Admin
  */
-public class CategoryServlet extends BaseServlet {
+public class ShopServlet extends BaseServlet {
 
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -33,29 +34,17 @@ public class CategoryServlet extends BaseServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int categoryId = Integer.parseInt(request.getParameter("categoryId"));
-
         CategoryDao categoryDao = DatabaseDao.getInstance().getCategoryDao();
         List<Category> categoryList = categoryDao.findAll();
         
         ProductDao productDao = DatabaseDao.getInstance().getProductDao();
-        List<Product> productList = null;
-        String orderBy = request.getParameter("orderBy");
-        if(orderBy == null) orderBy = "name";
+        List<Product> topProductList = productDao.findTopProduct();
+        List<Product> productList = productDao.findAll();
         
-        String order = request.getParameter("order");
-        if(order == null) order = "asc";
-        
-        productList = productDao.findByCategory(categoryId, orderBy, order);
-        
-        request.setAttribute("categoryList", categoryList);
         request.setAttribute("productList", productList);
-        request.setAttribute("categoryId", categoryId);
-        request.setAttribute("orderBy", orderBy);
-        request.setAttribute("order", order);
-
-        
-        request.getRequestDispatcher("category.jsp").include(request, response);
+        request.setAttribute("categoryList", categoryList);
+        request.setAttribute("topProductList", topProductList);
+        request.getRequestDispatcher("shop.jsp").include(request, response);
     }
 
     /**
@@ -69,6 +58,17 @@ public class CategoryServlet extends BaseServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
     }
+
+    /**
+     * Returns a short description of the servlet.
+     *
+     * @return a String containing servlet description
+     */
+    @Override
+    public String getServletInfo() {
+        return "Short description";
+    }// </editor-fold>
 
 }

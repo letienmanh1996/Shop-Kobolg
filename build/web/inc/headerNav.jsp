@@ -30,7 +30,7 @@
                                                 <a href="HomeServlet">Home</a>
                                             </li>
                                             <li>
-                                                <a href="">Shop</a>
+                                                <a href="ShopServlet">Shop</a>
                                             </li>
                                             <li>
                                                 <a href="">Elements</a>

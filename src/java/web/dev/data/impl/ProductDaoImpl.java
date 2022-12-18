@@ -203,4 +203,29 @@ public class ProductDaoImpl implements ProductDao {
         return productList;
     }
 
+    @Override
+    public List<Product> findByCategory(int categoryId, String orderBy, String order) {
+         List<Product> productList = new ArrayList<>();
+        Connection conn = MySQLDriver.getInstance().getConnection();
+        try {
+            String sql = "SELECT * FROM PRODUCTS WHERE CATEGORY_ID=? ORDER BY " + orderBy + " " + order;
+            PreparedStatement stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, categoryId);
+//            stmt.setString(2, orderBy);
+
+            ResultSet rs = stmt.executeQuery();
+            while (rs.next()) {
+                int id = rs.getInt("id");
+                String name = rs.getString("name");
+                String description = rs.getString("description");
+                String img = rs.getString("img");
+                Double price = rs.getDouble("price");
+                int quantity = rs.getInt("quantity");
+                int view = rs.getInt("view");
+                productList.add(new Product(id, name, description, img, price, quantity, view, categoryId));
+            }
+        } catch (SQLException ex) {
+        }
+        return productList;
+    }
 }
