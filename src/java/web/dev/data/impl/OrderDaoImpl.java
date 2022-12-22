@@ -152,9 +152,9 @@ public class OrderDaoImpl implements OrderDao {
 
     @Override
     public int countOrderByDay(String date) {
-           int count = 0;
+        int count = 0;
         Connection conn = MySQLDriver.getInstance().getConnection();
-            String sql = "SELECT COUNT(*) AS count FROM orders where date(created_at)=?";
+        String sql = "SELECT COUNT(*) AS count FROM orders where date(created_at)=?";
         try {
             PreparedStatement stmt = conn.prepareStatement(sql);
             stmt.setString(1, date);
@@ -166,7 +166,7 @@ public class OrderDaoImpl implements OrderDao {
             Logger.getLogger(UserDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
         }
         return count;
-    
+
     }
 
 }

@@ -50,22 +50,22 @@ public class DashboardServlet extends BaseAdminServlet {
         OrderDao orderDao = Database.getInstance().getOrderDao();
         int numberOrder = orderDao.findAll().size();
         double total = getTotal();
-        
+
         request.setAttribute("productList", productList);
         request.setAttribute("numberUser", numberUser);
         request.setAttribute("numberProduct", numberProduct);
         request.setAttribute("numberOrder", numberOrder);
         request.setAttribute("total", total);
-        
+
         List<Order> orderPendingList = Database.getInstance().getOrderDao().findByStatus("pending");
         request.setAttribute("orderPendingList", orderPendingList);
-        
+
         //Chart
-        List<String> dateList = labels(Constants.NUMBER_DAY);
+        List<String> dateList = GetDateTime.getDates(Constants.NUMBER_DAY);
         request.setAttribute("dateList", dateList);
-        
+
         List<Integer> countEachDay = new ArrayList<>();
-        for(int i = 0; i <= Constants.NUMBER_DAY; i++){
+        for (int i = 0; i < Constants.NUMBER_DAY; i++) {
             countEachDay.add(orderDao.countOrderByDay(dateList.get(i)));
         }
         request.setAttribute("countEachDay", countEachDay);
@@ -104,9 +104,4 @@ public class DashboardServlet extends BaseAdminServlet {
 
         return s;
     }
-      private List<String> labels(int number){
-        List<String> lbs = GetDateTime.getDates(number);
-        return lbs;
-    }
-
 }

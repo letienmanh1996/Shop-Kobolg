@@ -29,7 +29,7 @@ public class GetDateTime {
     
     public static List<String> getDates(int number) {
         List<String> dateList = new ArrayList<String>();
-        for (int i = number; i >= 0; i--) {
+        for (int i = number - 1; i >= 0; i--) {
             dateList.add(now.minusDays(i).format(format));
         }
         return dateList;
